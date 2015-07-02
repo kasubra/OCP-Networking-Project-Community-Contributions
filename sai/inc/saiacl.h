@@ -40,6 +40,18 @@ typedef enum _sai_acl_stage_t
     /* Egress Stage */
     SAI_ACL_STAGE_EGRESS,
 
+	/* Ingress Sub Stages */
+	/* Ingress Sub Stage Port ACL */
+	SAI_ACL_SUBSTAGE_INGRESS_PORT_ACL,
+
+	/* Ingress Sub Stage L2 ACL */
+	SAI_ACL_SUBSTAGE_INGRESS_L2_ACL,
+
+	/* Ingress Sub Stage L3 ACL */
+	SAI_ACL_SUBSTAGE_INGRESS_L3_ACL,
+
+	/* Egress Sub Stages */
+
 } sai_acl_stage_t; 
 
 typedef enum _sai_acl_ip_type_t 
