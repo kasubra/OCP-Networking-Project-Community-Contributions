@@ -318,6 +318,15 @@ SAI provides three different channels in order to send and receive packet from a
 ## ACL functionality (saiacl.h)
 Provides generalized Access Control Lists management functions. The ACL contains three types of objects, ACL table, ACL entry and ACL counter. The ACL table contains a number of ACL entries. Each ACL table defines a set of unique matching fields for all its ACL entries. A packet can match rules in different ACL tables and take non-conflicting actions from all the matched rules. However, within an ACL table, if a packet matches multiple rules, only the actions from the rule of highest priority are executed. ACL counters can also be created and attached to an ACL entry in order to counter the number of packets or bytes that match the ACL entry.
 
+The ACL functionality is also enhanced to include the stages of operation for an ingress and egress stage. This enhancement aims to a) create a clean abstraction of the hardware pipeline and b) try to keep it as generic as possible while still being able to exploit different hardware.
+
+ACL is a widely used feature for various applications. The ACL functionality typically various between NPU’s each providing some unique capabilities and functionality. Being widely used applications will want to exploit the full functionality provided by a NPU though the feature differs
+The functionality of the main/default Ingress and Egress stages will remain the same so all applications can work seamlessly. We will define sub stages within Ingress, Egress which will be well defined by SAI. The sub stages may/may not be supported by an NPU and that capability can be provided to application. In a system where the application wants to fully exploit the NPU features, they will need to know what the NPU supports and use them rather than trying to use one way for all NPU’s. Therefore, the enhacements tries through abstract via stages rather than attributes. Functionally, this entails:
+- Extending the current stage (ingress and egress) attribute to include substages (ingress and egress)
+- Identifying the  qualifiers/attributes along with actions for each stage/substage
+- The same SAI create call will be used for the substage as is done for the stage
+
+
 ## Quality of Service functionality (saiqos.h)
 Provides QoS functions. Manages the port scheduling mechanisms and CoS mapping.
 
