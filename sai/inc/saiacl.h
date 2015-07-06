@@ -41,13 +41,20 @@ typedef enum _sai_acl_stage_t
     SAI_ACL_STAGE_EGRESS,
 
 	/* Ingress Sub Stages */
-	/* Ingress Sub Stage Port ACL */
+
+	/* Ingress Sub Stage Port ACL: Stage 1 of ingress  *
+	 * pipeline, works on all the fields of the native *
+	 * packet before any editing or transformations	   */
 	SAI_ACL_SUBSTAGE_INGRESS_PORT_ACL,
 
-	/* Ingress Sub Stage L2 ACL */
+	/* Ingress Sub Stage L2 ACL: Use this substage for *
+	 * for L2 qualifiers, ex the remapped bridged      *
+	 * domain from the original VLAN/tag or meta data  */
 	SAI_ACL_SUBSTAGE_INGRESS_L2_ACL,
 
-	/* Ingress Sub Stage L3 ACL */
+	/* Ingress Sub Stage L3 ACL: Use this substage for *
+	 * L3 qualifiers, ex addresses to be looked up     *
+	 * pre/post NAT, flow/connection tracking, etc.    */
 	SAI_ACL_SUBSTAGE_INGRESS_L3_ACL,
 
 	/* Egress Sub Stages */
